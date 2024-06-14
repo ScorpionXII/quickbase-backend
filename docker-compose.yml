@@ -1,0 +1,21 @@
+services:
+  mongodb-server:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data/db
+  express-app:
+    restart: always
+    depends_on:
+      - mongodb-server
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app
+    environment:
+      - MONGO_DB_CONNECTION_URL=mongodb://mongodb-server:27017/qbdemo
+volumes:
+  mongo-data:
