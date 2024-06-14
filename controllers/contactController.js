@@ -73,8 +73,6 @@ const updateContact = async (req, res) => {
             res.send(storedContact);
         }
     } catch (error) {
-        console.log(error);
-        console.log("Here");
         res.send(error);
     }
 }

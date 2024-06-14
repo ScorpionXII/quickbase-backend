@@ -52,7 +52,9 @@ const logout = (req, res) => {
  */
 const checkSession = (req, res) => {
     try {
-        if(req.session.userId && req.session.name) {
+        const user = req.session.user;
+        
+        if(user) {
             res.send({ 
                 message: 'Session is still valid!',
                 loggedUser: req.session.user
